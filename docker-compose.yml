@@ -15,6 +15,7 @@ services:
         build: .
         container_name: dg01
         command: bash -c "
+            /src/wait-for-it.sh db:5432 -- &&
             python3 manage.py collectstatic --no-input &&
             python3 manage.py makemigrations && 
             python3 manage.py migrate && 
@@ -23,6 +24,7 @@ services:
             - db
         volumes:
             - ./src:/src
+            - ./wait-for-it.sh:/src/wait-for-it.sh
 
     db:
         image: postgres:12.2

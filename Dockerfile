@@ -33,3 +33,7 @@ RUN mkdir /src;
 
 # 작업 디렉토리 src로 변경
 WORKDIR /src
+
+# DB먼저 실행할 스크립트
+COPY wait-for-it.sh /wait-for-it.sh
+RUN chmod +x /wait-for-it.sh
